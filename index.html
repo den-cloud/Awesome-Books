@@ -11,8 +11,9 @@
     <div class="container">
         <h1>Awesome Books</h1>
 
-        <div>
-          <p id="books-list"></p>
+        <div id="book-list-container">
+     
+   
 
         </div>
         
@@ -26,7 +27,8 @@
                 <input type="text" id="author">
                 <br>
                 <br>
-                <input type="submit" id="submit" value="Add" onclick="addNewBook()">
+               <!--  <input type="submit" id="submit" value="Add" onsubmit="return false" onclick="addNewBook()"> -->
+               <button onclick="addNewBook()" onsubmit="return false">Submit</button>
             </div>
         </form>
     </div>

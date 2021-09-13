@@ -1,34 +1,65 @@
-// var book = function(title, author){
-//   title = title;
-//   author = author;
-// }
+var books = [];
 
-// function addNewBook() { 
-//     var title = document.getElementById('title').value;
-//     var author = document.getElementById('author').value;
-//     var booksList = document.getElementById('books-list');
-    
-//     books.title.push(title);
-//     books.author.push(author);
-//     booksList.innerHTML = books
-// }
-
-
-
-class { constructor (title, author) {
-     this.title = title
-     this.author = author }
+var form = document.getElementById("book-form");
+function handleForm(event) {
+     event.preventDefault();
      } 
+    form.addEventListener('submit', handleForm);
 
-class UI { static displayBooks()
-    edBooks = [
-         { title: 'Book One', author: 'Denzel Nkomo', }, 
-         { title: 'Book 2', author: 'Rayan Shamoon', } ] 
-        }
-     }  { 
-         const StoredBooks = [
-            { title: 'Book One', author: 'Denzel Nkomo', },
-            { title: 'Book 2', author: 'Rayan Shamoon', }
-         ] 
-        } 
-    } 
+
+
+function addNewBook() { 
+    var title = document.getElementById('title').value;
+    var author = document.getElementById('author').value;
+
+    books.push([title, author]);
+    // console.log(books);
+    // console.log(books.length);
+    renderBookList();
+}
+
+function renderBookList() {
+    var booksListContainer = document.getElementById('book-list-container');
+
+        var p = document.createElement('P');
+        var pText = document.createTextNode(books[books.length - 1]);
+        var removeButton = document.createElement('Button');
+        var buttonText = document.createTextNode('Remove');
+        var line = document.createElement('Hr');
+        var totalBooks = books.length;
+
+     
+        p.appendChild(pText);
+        booksListContainer.appendChild(p);
+        removeButton.appendChild(buttonText);
+        removeButton.setAttribute('onclick', 'removeBook('+[totalBooks-1]+')');
+        booksListContainer.appendChild(removeButton);
+        booksListContainer.appendChild(line);
+
+}
+
+function removeBook(num){
+    var removedParagraph = document.querySelectorAll('P');
+    var removedButton = document.querySelectorAll('Button');
+    removedButton[num].remove();
+    removedParagraph[num].remove();
+    removedParagraph.remove();
+    books.splice(num);
+    console.log(books);
+}
+
+// function checkBookList() {
+    
+//     var booksListContainer = document.getElementById('book-list-container');
+//     if (books.length == 0) {
+//         booksListContainer.style.display = 'none';
+//         console.log('If');
+//     } else {
+//         booksListContainer.style.display = 'block';
+//         console.log('Else');
+//     }
+// }
+
+//checkBookList();
+
+
