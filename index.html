@@ -13,26 +13,27 @@
     <div class="container">
         <h1>Awesome Books</h1>
 
-        <div id="book-list-container">
+        <section id="List-section">
+            <h3>Add books</h3>
+            <table id="bookList">
 
+            </table>
+        </section>
 
+        <section id="Add-section" class="text-align-center"> 
 
-        </div>
-
-        <form id="book-form">
-            <div class="form-group text-align-center">
-                <label for="title">Title</label>
-                <input type="text" id="title">
-                <br>
-                <br>
-                <label for="author">Author</label>
-                <input type="text" id="author">
-                <br>
-                <br>
-                <button onclick="addNewBook()" onsubmit="return false">Submit</button>
-            </div>
-        </form>
-    </div>
+            
+                <form id="form">
+                    <input type="text" required placeholder="Title" id="book_title">
+                    <br>
+                    <br>
+                    <input type="text" required placeholder="Author" id="book_author">
+                    <br>
+                    <br>
+                    <input type="submit" value="Add" id="addButton">
+                </form>
+            </fieldset>
+        </section>
     <script src="app.js"></script>
 </body>
 

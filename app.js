@@ -1,39 +1,89 @@
-const books = [];
+class AwesomeBooks {
+  constructor() {
+    this.bookArray = [];
+  }
 
-const form = document.getElementById('book-form');
-function handleForm(event) {
-  event.preventDefault();
+  addBook(booktitle, bookauthor) {
+    const book = {
+      title: booktitle,
+      author: bookauthor,
+    };
+
+    let shouldAdd = true;
+    if (booktitle && bookauthor) {
+      this.bookArray.forEach((book) => {
+        if (book.title === booktitle) {
+          shouldAdd = false;
+        }
+      });
+
+      if (shouldAdd) {
+        this.bookArray.push(book);
+      }
+    }
+  }
+
+  removeBook(title) {
+    this.bookArray = this.bookArray.filter((book) => book.title !== title);
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem('books', JSON.stringify(this.bookArray));
+  }
+
+  populateTable() {
+    const tableList = document.getElementById('bookList');
+
+    this.bookArray.forEach((book) => {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+
+      td.innerHTML = `<span>${book.title}</span> by ${book.author}`;
+
+      const removeButton = document.createElement('button');
+      removeButton.className = 'removeButton';
+      removeButton.type = 'button';
+      removeButton.innerHTML = 'Remove';
+
+      removeButton.addEventListener('click', (e) => {
+        const title = e.target.parentNode.firstChild.textContent;
+        this.removeBook(title);
+        this.saveToLocalStorage();
+        window.location.reload();
+      });
+
+      td.appendChild(removeButton);
+      tr.appendChild(td);
+      tableList.appendChild(tr);
+    });
+  }
+
+  handleSubmit() {
+    const form = document.getElementById('form');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const titleInput = document.getElementById('book_title');
+      const authorInput = document.getElementById('book_author');
+      this.addBook(titleInput.value, authorInput.value);
+      this.saveToLocalStorage();
+      titleInput.value = '';
+      authorInput.value = '';
+      window.location.reload();
+    });
+  }
+
+  reloadPage() {
+    window.onload = () => {
+      if (localStorage.getItem('books') !== null) {
+        this.bookArray = JSON.parse(localStorage.getItem('books'));
+        this.populateTable();
+      }
+    };
+  }
 }
-form.addEventListener('submit', handleForm);
 
-addNewBook = () => {
-  const title = document.getElementById('title').value;
-  const author = document.getElementById('author').value;
-  books.push([title, author]);
-  renderBookList();
-};
+const books = new AwesomeBooks();
 
-renderBookList = () => {
-  const booksListContainer = document.getElementById('book-list-container');
-  const p = document.createElement('P');
-  const pText = document.createTextNode(books[books.length - 1]);
-  const removeButton = document.createElement('Button');
-  const buttonText = document.createTextNode('Remove');
-  const line = document.createElement('Hr');
-  const totalBooks = books.length;
-
-  p.appendChild(pText);
-  booksListContainer.appendChild(p);
-  removeButton.appendChild(buttonText);
-  removeButton.setAttribute('onclick', `removeBook(${[totalBooks - 1]})`);
-  booksListContainer.appendChild(removeButton);
-  booksListContainer.appendChild(line);
-};
-
-removeBook = (num) => {
-  const removedParagraph = document.querySelectorAll('P');
-  const removedButton = document.querySelectorAll('Button');
-  removedButton[num].remove();
-  removedParagraph[num].remove();
-  books.splice(num, 1);
-};
+books.handleSubmit();
+books.reloadPage();
