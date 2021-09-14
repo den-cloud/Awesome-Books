@@ -1,27 +1,27 @@
-class AwesomeBooks {
-  constructor() {
-    this.bookArray = [];
-  }
+// class AwesomeBooks {
+//   constructor() {
+//     this.bookArray = [];
+//   }
 
-  addBook(booktitle, bookauthor) {
-    const book = {
-      title: booktitle,
-      author: bookauthor,
-    };
+//   addBook(booktitle, bookauthor) {
+//     const book = {
+//       title: booktitle,
+//       author: bookauthor,
+//     };
 
-    let shouldAdd = true;
-    if (booktitle && bookauthor) {
-      this.bookArray.forEach((book) => {
-        if (book.title === booktitle) {
-          shouldAdd = false;
-        }
-      });
+//     let shouldAdd = true;
+//     if (booktitle && bookauthor) {
+//       this.bookArray.forEach((book) => {
+//         if (book.title === booktitle) {
+//           shouldAdd = false;
+//         }
+//       });
 
-      if (shouldAdd) {
-        this.bookArray.push(book);
-      }
-    }
-  }
+//       if (shouldAdd) {
+//         this.bookArray.push(book);
+//       }
+//     }
+//   }
 
   removeBook(title) {
     this.bookArray = this.bookArray.filter((book) => book.title !== title);
