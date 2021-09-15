@@ -10,30 +10,28 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Awesome Books</h1>
-
-        <section id="List-section">
-            <h3>Add books</h3>
-            <table id="bookList">
+    <main class="main-content d-flex">
+        <section id="List-section" class="List-section d-flex"> 
+            <h2>All awesome books</h2>
+            <table id="bookList" class="book-table">
 
             </table>
+            <hr class="List-section-hr">
         </section>
 
-        <section id="Add-section" class="text-align-center">
+        <section id="Add-section" class="Add-section d-flex"> 
+            <h2>Add a new book</h2>
 
+            <fieldset>
+                <form id="form" class="form d-flex">
+                    <input class="form-item" type="text" required placeholder="Title" id="book_title">
+                    <input class="form-item" type="text" required placeholder="Author" id="book_author">
 
-            <form id="form">
-                <input type="text" required placeholder="Title" id="book_title">
-                <br>
-                <br>
-                <input type="text" required placeholder="Author" id="book_author">
-                <br>
-                <br>
-                <input type="submit" value="Add" id="addButton">
-            </form>
+                    <input class="form-item addButton" type="submit" value="Add" id="addButton">
+                </form>
+            </fieldset>
         </section>
-    </div>
+    </main>
     <script src="app.js"></script>
 </body>
 
