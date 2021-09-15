@@ -40,7 +40,7 @@ class AwesomeBooks {
       const td = document.createElement('td');
       td.className = 'table-entry';
 
-      td.innerHTML = `<div><span>${book.title}</span> by ${book.author} </div>`;
+      td.innerHTML = `<span>${book.title}</span> by ${book.author}`;
 
       const removeButton = document.createElement('button');
       removeButton.className = 'removeButton';
@@ -57,18 +57,22 @@ class AwesomeBooks {
       td.appendChild(removeButton);
       tr.appendChild(td);
       tableList.appendChild(tr);
-      tableList.style.border = '1px solid #789';
+      tableList.style.border = '5px solid #789';
     });
   }
 
   handleSubmit() {
     const form = document.getElementById('form');
 
-    form.addEventListener('submit', () => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
       const titleInput = document.getElementById('book_title');
       const authorInput = document.getElementById('book_author');
       this.addBook(titleInput.value, authorInput.value);
       this.saveToLocalStorage();
+      titleInput.value = '';
+      authorInput.value = '';
+      window.location.reload();
     });
   }
 
