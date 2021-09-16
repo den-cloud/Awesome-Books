@@ -19,12 +19,12 @@ body {
 
 .List-section,
 .Add-section,
-.main-content {
+.main-content-1 {
   flex-direction: column;
   align-items: center;
 }
 
-.main-content {
+.main-content-1 {
   justify-content: center;
   width: 100%;
   height: 100vh;
